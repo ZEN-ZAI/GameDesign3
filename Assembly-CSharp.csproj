@@ -61,19 +61,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DummyItem.cs" />
     <Compile Include="Assets\Game3\Script\Camera\CameraController.cs" />
     <Compile Include="Assets\Game3\Script\Character\Character.cs" />
-    <Compile Include="Assets\Game3\Script\DataBase.cs" />
-    <Compile Include="Assets\Game3\Script\GameSystem.cs" />
-    <Compile Include="Assets\Game3\Script\Inventory\DragInventory.cs" />
-    <Compile Include="Assets\Game3\Script\Inventory\Item.cs" />
     <Compile Include="Assets\Game3\Script\Player\PlayerController.cs" />
+    <Compile Include="Assets\Game3\Script\Player\PlayerInventory.cs" />
     <Compile Include="Assets\Game3\Script\Player\PlayerMotor.cs" />
-    <Compile Include="Assets\Game3\Script\UILink.cs" />
-    <Compile Include="Assets\PlayerInventory.cs" />
-    <Compile Include="Assets\SlotInventory.cs" />
-    <Compile Include="Assets\SlotsSystem.cs" />
+    <Compile Include="Assets\Game3\Script\System\DataBase.cs" />
+    <Compile Include="Assets\Game3\Script\System\GameSystem.cs" />
+    <Compile Include="Assets\Game3\Script\UI\DragWindow.cs" />
+    <Compile Include="Assets\Game3\Script\UI\UILink.cs" />
+    <Compile Include="Assets\Game3\Script\Windows\Inventory\DummyItem.cs" />
+    <Compile Include="Assets\Game3\Script\Windows\Inventory\SlotInventory.cs" />
+    <Compile Include="Assets\Game3\Script\Windows\Inventory\SlotsInventoryListsSystem.cs" />
+    <Compile Include="Assets\Game3\Script\Windows\Item.cs" />
+    <Compile Include="Assets\Game3\Script\Windows\Team\SlotTeam.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -129,19 +130,19 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Unity/GameDesign3/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/Unity/GameDesign3/GameDesign3/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/Unity/GameDesign3/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/Unity/GameDesign3/GameDesign3/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Unity/GameDesign3/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/Unity/GameDesign3/GameDesign3/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Unity/GameDesign3/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/Unity/GameDesign3/GameDesign3/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>D:/Unity/GameDesign3/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>D:/Unity/GameDesign3/GameDesign3/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Program Files/Unity/Unity 2018.3.0b10/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -345,13 +346,13 @@
       <HintPath>D:/Program Files/Unity/Unity 2018.3.0b10/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>D:/Unity/GameDesign3/Library/PackageCache/com.unity.analytics@3.2.0/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>D:/Unity/GameDesign3/GameDesign3/Library/PackageCache/com.unity.analytics@3.2.0/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>D:/Unity/GameDesign3/Library/PackageCache/com.unity.analytics@3.2.0/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>D:/Unity/GameDesign3/GameDesign3/Library/PackageCache/com.unity.analytics@3.2.0/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>D:/Unity/GameDesign3/Library/PackageCache/com.unity.analytics@3.2.0/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>D:/Unity/GameDesign3/GameDesign3/Library/PackageCache/com.unity.analytics@3.2.0/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Program Files/Unity/Unity 2018.3.0b10/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

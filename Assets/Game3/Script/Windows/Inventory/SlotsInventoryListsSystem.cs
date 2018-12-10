@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SlotsSystem : MonoBehaviour
+public class SlotsInventoryListsSystem : MonoBehaviour
 {
     #region Singleton
-    public static SlotsSystem instance;
+    public static SlotsInventoryListsSystem instance;
 
     void Awake()
     {
@@ -24,20 +24,17 @@ public class SlotsSystem : MonoBehaviour
         {
             slots.Add(transform.GetChild(i).GetComponent<RectTransform>());
         }
+
+        SortingInventory();
+    }
+
+    public void SortingInventory()
+    {
         slots = slots.OrderBy(e => e.childCount).Reverse().ToList();
         foreach (var item in slots)
         {
             int index = slots.IndexOf(item);
             item.SetSiblingIndex(index);
-        }
-    }
-
-    void Update()
-    {
-
-        if (UILink.instance.inventoryPanel.activeInHierarchy)
-        {
-
         }
     }
 
