@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Slot
-  - TeamSlot
   - InventoryWindow
   - TeamWindow
+  - TeamMemberSlot
+  - InventorySlot
   layers:
   - Default
   - TransparentFX

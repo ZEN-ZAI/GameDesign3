@@ -67,6 +67,9 @@ public class ItemSocket : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             nowSlot.GetComponent<RectTransform>().GetComponent<GridLayoutGroup>().enabled = false;
             nowSlot.GetComponent<RectTransform>().GetComponent<GridLayoutGroup>().enabled = true;
         }
+
+        //Update to TeamLists
+       // SlotsTeamMemberLists.instance.UpdateTeamMember();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

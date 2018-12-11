@@ -104,21 +104,21 @@ public class UILink : MonoBehaviour
     {
         // inventoryWindow.GetComponent<RectTransform>().position = Input.mousePosition;
 
-        /*
+        
         Vector2 pos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(mainCanvas.transform as RectTransform, Input.mousePosition, mainCanvas.worldCamera, out pos);
         inventoryWindow.GetComponent<RectTransform>().position = mainCanvas.transform.TransformPoint(pos);
-        */
-
-
         
+
+
+        /*
         float x = 0; x += Input.GetAxisRaw("Mouse X")*Time.deltaTime*speed;
         float y = 0; y += Input.GetAxisRaw("Mouse Y") * Time.deltaTime* speed;
 
         Vector3 temp = inventoryWindow.GetComponent<RectTransform>().position;
 
         inventoryWindow.GetComponent<RectTransform>().position = new Vector3(temp.x + x, temp.y + y, 0);
-        
+        */
 
     }
 
@@ -126,11 +126,11 @@ public class UILink : MonoBehaviour
     {
         // teamWindow.GetComponent<RectTransform>().position = Input.mousePosition;
 
-        /*
+        
         Vector2 pos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(mainCanvas.transform as RectTransform, Input.mousePosition, mainCanvas.worldCamera, out pos);
         teamWindow.GetComponent<RectTransform>().position = mainCanvas.transform.TransformPoint(pos);
-        */
+        
 
     }
 

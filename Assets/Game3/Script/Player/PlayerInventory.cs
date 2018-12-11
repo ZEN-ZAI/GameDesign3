@@ -10,15 +10,19 @@ public class PlayerInventory : MonoBehaviour
     void Awake()
     {
         instance = this;
+        SlotsInventoryLists.instance.SetMaxInventory(maxInventory);
     }
     #endregion
 
     public ItemSocket ItemSocketDummy;
+    [SerializeField] private List<Character> InventoryLists = new List<Character>();
+    [SerializeField] private int maxInventory;
 
-    public List<Character> teamLists = new List<Character>();
-    public List<Character> InventoryLists = new List<Character>();
-    public int maxInventory = 50;
-    
+    public void UpdateMaxInventory(int n)
+    {
+        maxInventory += n;
+    }
+
     public void Add(Character character)
     {
         if (InventoryLists.Count >= maxInventory)
@@ -26,14 +30,14 @@ public class PlayerInventory : MonoBehaviour
             Debug.Log("Your inventory is full.");
             return;
         }
-        else
+        else if(SlotsInventoryLists.instance.Count > 0)
         {
             InventoryLists.Add(character);
-            ItemSocket newItemSocket = Instantiate(ItemSocketDummy, SlotsInventoryLists.instance.AddItemInSlot());
-            newItemSocket.AddInstance(character);
+            SlotsInventoryLists.instance.AddItemSocketInSlot(character);
         }
     }
-    
+
+    // use for itemSocket
     public void Remove(Character character)
     {
         if (InventoryLists.Count >= 1)
@@ -46,22 +50,21 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    // for Play
-    void Start()
+    
+    public void ReloadItemInPlayerInventorylists()
     {
-        SlotsInventoryLists.instance.SetMaxInventory(maxInventory);
+        SlotsInventoryLists.instance.ClearSlot();
+
+        foreach (var item in PlayerInventory.instance.InventoryLists)
+        {
+            SlotsInventoryLists.instance.AddSlot();
+            SlotsInventoryLists.instance.AddItemSocketInSlot(item);
+        }
     }
 
     void Update()
     {
-        if (maxInventory < SlotsInventoryLists.instance.GetMaxInventory())
-        {
-            return;
-        }
-        else
-        {
-            SlotsInventoryLists.instance.SetMaxInventory(maxInventory);
-        }
+        SlotsInventoryLists.instance.SetMaxInventory(maxInventory);
     }
 
 

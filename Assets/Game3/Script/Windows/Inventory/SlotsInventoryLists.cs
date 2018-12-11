@@ -16,9 +16,17 @@ public class SlotsInventoryLists : MonoBehaviour
     }
     #endregion
 
+    public ItemSocket ItemSocketDummy;
+    public Transform inventoryContent;
     public GameObject slotInventoryPrefeb;
-    private List<GameObject> slots = new List<GameObject>();
+
+    [SerializeField]private List<GameObject> slotsInventoryLists = new List<GameObject>();
     private int maxInventory;
+
+    public int Count
+    {
+        get { return slotsInventoryLists.Count; }
+    }
 
     public int GetMaxInventory()
     {
@@ -30,78 +38,103 @@ public class SlotsInventoryLists : MonoBehaviour
         maxInventory = n;
     }
 
-    public Transform AddItemInSlot()
+    public void AddSlot()
     {
-        int index = slots.FindIndex(e => e.transform.childCount == 0);
+        if (slotsInventoryLists.Count < maxInventory)
+        {
+            Debug.LogWarning("Add Slot.");
 
-        Debug.LogWarning("Add idex slot :"+index);
-        return slots[index].transform;
+            GameObject slotInventory = Instantiate(slotInventoryPrefeb, inventoryContent);
+            slotsInventoryLists.Add(slotInventory);
+        }
+    }
+
+    public void RemoveSlot()
+    {
+        if (slotsInventoryLists.Count >= 1)
+        {
+            Debug.LogWarning("Remove Slot.");
+
+            slotsInventoryLists.Remove(slotsInventoryLists[slotsInventoryLists.Count - 1]);
+            slotsInventoryLists.Capacity--;
+            Destroy(inventoryContent.GetChild(slotsInventoryLists.Count).gameObject);
+        }
+    }
+
+    public void ClearSlot()
+    {
+        Debug.LogWarning("Clear Slot.");
+
+        for (int i = slotsInventoryLists.Count; i >= 1; i--)
+        {
+            slotsInventoryLists.Remove(slotsInventoryLists[slotsInventoryLists.Count - 1]);
+            slotsInventoryLists.Capacity--;
+            Destroy(inventoryContent.GetChild(slotsInventoryLists.Count).gameObject);
+        }
 
     }
 
-    /* // use  Destroy(gameObject); in a in ItemSocket.cs
-    public Transform RemoveItemInSlot(Character character)
+    public void AddItemSocketInSlot(Character character)
     {
+        if (slotsInventoryLists.Count >= 1)
+        {
+            int index = slotsInventoryLists.FindIndex(e => e.transform.childCount == 0);
+            ItemSocket newItemSocket = Instantiate(ItemSocketDummy, slotsInventoryLists[index].transform);
+            newItemSocket.AddInstance(character);
 
-        int index = slots.FindIndex(e => e.GetComponent<ItemSocket>().character == character);
+            Debug.LogWarning("Add item[" + character.name + "] in slot: " + index);
+        }
+
+    }
+
+    //use Destroy(gameObject); in a in ItemSocket.cs For RemoveItemInSlot 
+    public void RemoveItemInSlot(Character character)
+    {
+        /*
+        int index = slotsInventoryLists.FindIndex(e => e.GetComponent<ItemSocket>().character == character);
 
         Debug.LogWarning("Remove idex slot :" + index);
-        return slots[index].transform;
-
-    }*/
+        return slotsInventoryLists[index].transform;
+        */
+    }
 
     // for Play
     void Start()
     {
-        //slots.Capacity = PlayerInventory.instance.maxInventory;
-
-        if (transform.childCount !=0)
+        if (inventoryContent.childCount != 0)
         {
-            for (int i = 0; i < transform.childCount; i++)
+            for (int i = 0; i < inventoryContent.childCount; i++)
             {
-                Destroy(transform.GetChild(i).gameObject);
+                Destroy(inventoryContent.GetChild(i).gameObject);
             }
         }
 
         for (int i = 0; i < maxInventory; i++)
         {
-            GameObject slotInventory = Instantiate(slotInventoryPrefeb,transform);
-            slots.Add(slotInventory);
+            AddSlot();
+        }
+    }
+
+    void Update()
+    {
+        if (Count < maxInventory)
+        {
+            AddSlot();
+        }
+        else if (Count > maxInventory)
+        {
+            RemoveSlot();
         }
     }
 
     public void SortingInventory()
     {
-        slots = slots.OrderBy(e => e.transform.childCount).Reverse().ToList();
-        foreach (var item in slots)
+        slotsInventoryLists = slotsInventoryLists.OrderBy(e => e.transform.childCount).Reverse().ToList();
+        foreach (var item in slotsInventoryLists)
         {
-            int index = slots.IndexOf(item);
+            int index = slotsInventoryLists.IndexOf(item);
             item.transform.SetSiblingIndex(index);
         }
     }
-
-    // for Debug
-    /*
-    void Start()
-    {
-
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            slots.Add(transform.GetChild(i).GetComponent<RectTransform>());
-        }
-
-        SortingInventory();
-    }
-
-    public void SortingInventory()
-    {
-        slots = slots.OrderBy(e => e.childCount).Reverse().ToList();
-        foreach (var item in slots)
-        {
-            int index = slots.IndexOf(item);
-            item.SetSiblingIndex(index);
-        }
-    }
-    */
 
 }
