@@ -13,34 +13,32 @@ public class PlayerInventory : MonoBehaviour
     }
     #endregion
 
-    public Item itemDummy;
-    public Transform parentInventory;
-    public Item[] itemInInventory;
+    public ItemSocket ItemSocketDummy;
 
-    public List<Character> team = new List<Character>();
-    public List<Character> inventory = new List<Character>();
-    private int maxInventory = 50;
-
+    public List<Character> teamLists = new List<Character>();
+    public List<Character> InventoryLists = new List<Character>();
+    public int maxInventory = 50;
+    
     public void Add(Character character)
     {
-        if (inventory.Count >= maxInventory)
+        if (InventoryLists.Count >= maxInventory)
         {
             Debug.Log("Your inventory is full.");
             return;
         }
         else
         {
-            inventory.Add(character);
-            Item newItem = Instantiate(itemDummy, parentInventory);
-            newItem.AddItem(character);
+            InventoryLists.Add(character);
+            ItemSocket newItemSocket = Instantiate(ItemSocketDummy, SlotsInventoryLists.instance.AddItemInSlot());
+            newItemSocket.AddInstance(character);
         }
     }
-
+    
     public void Remove(Character character)
     {
-        if (inventory.Count >= 1)
+        if (InventoryLists.Count >= 1)
         {
-            inventory.Remove(character);
+            InventoryLists.Remove(character);
         }
         else
         {
@@ -48,15 +46,38 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
+    // for Play
     void Start()
     {
-        itemInInventory = parentInventory.GetComponentsInChildren<Item>();
-        Debug.Log(itemInInventory.Length);
-        foreach (var item in itemInInventory)
+        SlotsInventoryLists.instance.SetMaxInventory(maxInventory);
+    }
+
+    void Update()
+    {
+        if (maxInventory < SlotsInventoryLists.instance.GetMaxInventory())
         {
-            inventory.Add(item.character);
+            return;
+        }
+        else
+        {
+            SlotsInventoryLists.instance.SetMaxInventory(maxInventory);
         }
     }
+
+
+    // for Debug
+    /*
+    void Start()
+    {
+
+
+        ItemSocketInInventory = parentInventory.GetComponentsInChildren<ItemSocket>();
+        Debug.Log(ItemSocketInInventory.Length);
+        foreach (var ItemSocket in ItemSocketInInventory)
+        {
+            InventoryLists.Add(ItemSocket.character);
+        }
+    }
+    */
 
 }

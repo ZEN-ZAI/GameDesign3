@@ -16,29 +16,29 @@ public class GameSystem : MonoBehaviour
 
     public Camera normalStateCamera;
     public Camera fightStateCamera;
-
-    public bool inFight;
+    public GameObject mainUI;
 
     public delegate void state();
     public state active;
 
-    // Use this for initialization
+    public bool inFight;
+
     void Start()
     {
         active = (state)(NormalState);
         active();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
-        if (active == NormalState && inFight) //  walk to fight
+        if (active == NormalState && inFight) //  normal to fight
         {
+            mainUI.SetActive(false);
             active = (state)(FightState);
             active();
         }
-        else if (active == NormalState && !inFight) //  walk to wak
+        else if (active == NormalState && !inFight) //  normal to normal
         {
             active = (state)(NormalState);
             active();
@@ -48,8 +48,9 @@ public class GameSystem : MonoBehaviour
             active = (state)(FightState);
             active();
         }
-        else if (active == FightState && !inFight) //  fight to walk
+        else if (active == FightState && !inFight) //  fight to normal
         {
+            mainUI.SetActive(true);
             active = (state)(NormalState);
             active();
         }

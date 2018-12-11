@@ -7,17 +7,17 @@ using UnityEngine.EventSystems;
 public class SlotInventory : MonoBehaviour, IDropHandler ,IPointerEnterHandler
 {
 
-    public Item itemInSlot;
+    public ItemSocket ItemSocketInSlot;
 
     void Start()
     {
         if (transform.childCount == 1)
         {
-            itemInSlot = transform.GetChild(0).GetComponent<Item>();
+            ItemSocketInSlot = transform.GetChild(0).GetComponent<ItemSocket>();
         }
         else if (transform.childCount > 1)
         {
-            Debug.LogError("[Inventory Slot] Item over in 1 slot.");
+            Debug.LogError("[Inventory Slot] ItemSocket over in 1 slot.");
         }
     }
 
@@ -25,29 +25,32 @@ public class SlotInventory : MonoBehaviour, IDropHandler ,IPointerEnterHandler
     {
         if (transform.childCount == 1)
         {
-            itemInSlot = transform.GetChild(0).GetComponent<Item>();
+            ItemSocketInSlot = transform.GetChild(0).GetComponent<ItemSocket>();
         }
         else
         {
-            itemInSlot = null;
+            ItemSocketInSlot = null;
         }
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag != null && transform.childCount == 0)
+        if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<ItemSocket>() != null && transform.childCount == 0)
         {
             Debug.Log(eventData.pointerDrag.name + " Drop in " + gameObject.name);
-            eventData.pointerDrag.GetComponent<Item>().nowSlot.GetComponent<RectTransform>().GetComponent<CanvasGroup>().blocksRaycasts = true;
-            eventData.pointerDrag.GetComponent<Item>().nowSlot = transform;
+            eventData.pointerDrag.GetComponent<ItemSocket>().nowSlot.GetComponent<RectTransform>().GetComponent<CanvasGroup>().blocksRaycasts = true;
+            eventData.pointerDrag.GetComponent<ItemSocket>().nowSlot = transform;
+
+            //move in lists
+            //SlotsInventoryLists.instance.
         }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (eventData.pointerDrag != null && transform.childCount == 0)
+        if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<ItemSocket>() != null &&  transform.childCount == 0)
         {
-            Debug.Log("Item ["+ eventData.pointerDrag.name+ "] to new slot "+ gameObject.name);
+            Debug.Log("["+ eventData.pointerDrag.name+ "] to new slot "+ gameObject.name);
         }
     }
 }

@@ -72,8 +72,8 @@
     <Compile Include="Assets\Game3\Script\UI\UILink.cs" />
     <Compile Include="Assets\Game3\Script\Windows\Inventory\DummyItem.cs" />
     <Compile Include="Assets\Game3\Script\Windows\Inventory\SlotInventory.cs" />
-    <Compile Include="Assets\Game3\Script\Windows\Inventory\SlotsInventoryListsSystem.cs" />
-    <Compile Include="Assets\Game3\Script\Windows\Item.cs" />
+    <Compile Include="Assets\Game3\Script\Windows\Inventory\SlotsInventoryLists.cs" />
+    <Compile Include="Assets\Game3\Script\Windows\ItemSocket.cs" />
     <Compile Include="Assets\Game3\Script\Windows\Team\SlotTeam.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

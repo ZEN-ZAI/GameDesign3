@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (Input.GetMouseButtonDown(0) && active != Fight && !UILink.instance.inventoryPanel.activeInHierarchy)
+        if (Input.GetMouseButtonDown(0) && active != Fight && !UILink.instance.haveWindowInOpen)
         {
             // Shoot out a ray
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);

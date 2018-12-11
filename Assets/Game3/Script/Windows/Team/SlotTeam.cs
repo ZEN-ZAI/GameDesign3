@@ -9,13 +9,13 @@ public class SlotTeam : SlotInventory
     {
         if (transform.childCount == 1)
         {
-            itemInSlot = transform.GetChild(0).GetComponent<Item>();
+            ItemSocketInSlot = transform.GetChild(0).GetComponent<ItemSocket>();
 
             
         }
         else
         {
-            itemInSlot = null;
+            ItemSocketInSlot = null;
         }
     }
 
