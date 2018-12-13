@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            PlayerInventory.instance.Add(DataBase.instance.allCharacter[0]);
+            PlayerInventory.instance.AddItem(DataBase.instance.GiftItem(0));
         }
     }
 

@@ -23,6 +23,20 @@ public class PlayerInventory : MonoBehaviour
         maxInventory += n;
     }
 
+    public void AddItem(Character character)
+    {
+        if (InventoryLists.Count >= maxInventory)
+        {
+            Debug.Log("Your inventory is full.");
+            return;
+        }
+        else if (SlotsInventoryLists.instance.Count > 0)
+        {
+            InventoryLists.Add(character);
+            SlotsInventoryLists.instance.AddItemSocketInSlot(character);
+        }
+    }
+
     public void Add(Character character)
     {
         if (InventoryLists.Count >= maxInventory)
@@ -33,7 +47,6 @@ public class PlayerInventory : MonoBehaviour
         else if(SlotsInventoryLists.instance.Count > 0)
         {
             InventoryLists.Add(character);
-            SlotsInventoryLists.instance.AddItemSocketInSlot(character);
         }
     }
 

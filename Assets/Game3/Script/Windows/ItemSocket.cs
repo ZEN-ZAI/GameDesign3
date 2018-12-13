@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ public class ItemSocket : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public Button removeButton;
     public Character character;
 
+    public FormSlot formSlot = new FormSlot();
     public Transform nowSlot;
 
     public void removeItemInInventory()
@@ -28,15 +30,26 @@ public class ItemSocket : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         removeButton.enabled = true;
     }
 
-    /*public void RemoveInstance(Character character)
+    void Start()
     {
+        nowSlot = transform.parent;
+        formSlot.oldSlot = nowSlot;
+        formSlot.character = character;
+    }
 
-        icon.sprite = null;
-        icon.enabled = false;
-        character = null;
-        removeButton.image.enabled = false;
-        removeButton.enabled = false;
-    }*/
+    void Update()
+    {
+        if (gameObject.transform.parent.tag == "InventorySlot")
+        {
+            removeButton.image.enabled = true;
+            removeButton.enabled = true;
+        }
+        else
+        {
+            removeButton.image.enabled = false;
+            removeButton.enabled = false;
+        }
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -68,12 +81,30 @@ public class ItemSocket : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             nowSlot.GetComponent<RectTransform>().GetComponent<GridLayoutGroup>().enabled = true;
         }
 
-        //Update to TeamLists
-       // SlotsTeamMemberLists.instance.UpdateTeamMember();
+        if (formSlot.oldSlot.tag == "InventorySlot" && nowSlot.tag == "TeamMemberSlot")
+        {
+            SlotsTeamMemberLists.instance.UpdateTeamMember();
+            PlayerInventory.instance.Remove(character);
+        }
+        else if (formSlot.oldSlot.tag == "TeamMemberSlot" && nowSlot.tag == "InventorySlot")
+        {
+            PlayerTeam.instance.Remove(character);
+            PlayerInventory.instance.Add(character);
+        }
+        else if (formSlot.oldSlot.tag == "TeamMemberSlot" && nowSlot.tag == "TeamMemberSlot")
+        {
+            PlayerTeam.instance.Remove(character);
+            SlotsTeamMemberLists.instance.UpdateTeamMember();
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("Show information.");
     }
+}
+public class FormSlot
+{
+   public Transform oldSlot;
+   public Character character;
 }

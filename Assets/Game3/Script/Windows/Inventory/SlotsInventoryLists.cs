@@ -45,6 +45,7 @@ public class SlotsInventoryLists : MonoBehaviour
             Debug.LogWarning("Add Slot.");
 
             GameObject slotInventory = Instantiate(slotInventoryPrefeb, inventoryContent);
+            slotInventory.transform.tag = "InventorySlot";
             slotsInventoryLists.Add(slotInventory);
         }
     }

@@ -35,11 +35,17 @@ public class Slot : MonoBehaviour, IDropHandler ,IPointerEnterHandler
 
     public void OnDrop(PointerEventData eventData)
     {
+
         if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<ItemSocket>() != null && transform.childCount == 0)
         {
+            // เก็บ Slot ที่จากมา
+            eventData.pointerDrag.GetComponent<ItemSocket>().formSlot.oldSlot = eventData.pointerDrag.GetComponent<ItemSocket>().nowSlot;
+            eventData.pointerDrag.GetComponent<ItemSocket>().formSlot.character = eventData.pointerDrag.GetComponent<ItemSocket>().character;
+
             Debug.Log(eventData.pointerDrag.name + " Drop in " + gameObject.name);
             eventData.pointerDrag.GetComponent<ItemSocket>().nowSlot.GetComponent<RectTransform>().GetComponent<CanvasGroup>().blocksRaycasts = true;
             eventData.pointerDrag.GetComponent<ItemSocket>().nowSlot = transform;
+
         }
     }
 

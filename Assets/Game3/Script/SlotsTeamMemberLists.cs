@@ -14,7 +14,7 @@ public class SlotsTeamMemberLists : MonoBehaviour
     #endregion
 
     public Transform teamContent;
-    public GameObject slotInventoryPrefeb;
+    public GameObject TeamMemberSlotPrefeb;
     public List<GameObject> slotsTeamLists = new List<GameObject>();
     private int maxMember;
 
@@ -39,8 +39,9 @@ public class SlotsTeamMemberLists : MonoBehaviour
         {
             Debug.LogWarning("Add Slot.");
 
-            GameObject slotInventory = Instantiate(slotInventoryPrefeb, teamContent);
-            slotsTeamLists.Add(slotInventory);
+            GameObject TeamMemberSlot = Instantiate(TeamMemberSlotPrefeb, teamContent);
+            TeamMemberSlot.transform.tag = "TeamMemberSlot";
+            slotsTeamLists.Add(TeamMemberSlot);
         }
     }
 
@@ -74,12 +75,14 @@ public class SlotsTeamMemberLists : MonoBehaviour
 
     public void UpdateTeamMember()
     {
-
-
-        /*int index = slotsTeamLists.FindIndex(e => e.transform.childCount == 1);
-        PlayerTeam.instance.AddMember(index,
-        slotsTeamLists[index].transform.GetChild(0).GetComponent<ItemSocket>().character
-        );*/
+        Debug.Log("Update team member");
+        for (int i = 0; i < teamContent.childCount; i++)
+        {
+            if (teamContent.GetChild(i).childCount == 1)
+            {
+                PlayerTeam.instance.AddMember(i, teamContent.GetChild(i).GetChild(0).GetComponent<ItemSocket>().character);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -94,13 +97,6 @@ public class SlotsTeamMemberLists : MonoBehaviour
             RemoveSlot();
         }
 
-        for (int i = 0; i < teamContent.childCount; i++)
-        {
-            if (teamContent.GetChild(i).childCount == 1 && !PlayerTeam.instance.HaveMember(i))
-            {
-                Debug.Log(" Child: " + i + " " + teamContent.GetChild(i).GetComponent<ItemSocket>());
-                PlayerTeam.instance.AddMember(i, teamContent.GetChild(i).GetChild(0).GetComponent<ItemSocket>().character);
-            }
-        }
+       //UpdateTeamMember();
     }
 }

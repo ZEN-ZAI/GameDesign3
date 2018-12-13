@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DataBase : MonoBehaviour
 {
+    
     #region Singleton
     public static DataBase instance;
 
@@ -19,6 +20,8 @@ public class DataBase : MonoBehaviour
     private List<Character> srCharacter = new List<Character>();
     private List<Character> ssrCharacter = new List<Character>();
     private List<Character> zenCharacter = new List<Character>();
+
+    private int itemId;
 
     void Start()
     {
@@ -45,6 +48,14 @@ public class DataBase : MonoBehaviour
                 zenCharacter.Add(item);
             }
         }
+    }
+
+    public Character GiftItem(int index)
+    {
+        Character newItem = Instantiate(allCharacter[index]);
+        newItem.itemID = ++itemId;
+
+        return newItem;
     }
 
     void Update()
