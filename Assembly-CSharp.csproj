@@ -61,22 +61,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DisplayTeamSystem.cs" />
+    <Compile Include="Assets\DummyCharacter.cs" />
+    <Compile Include="Assets\Game3\Script\Camera\CameraAnimation.cs" />
     <Compile Include="Assets\Game3\Script\Camera\CameraController.cs" />
     <Compile Include="Assets\Game3\Script\Character\Character.cs" />
     <Compile Include="Assets\Game3\Script\Player\PlayerController.cs" />
     <Compile Include="Assets\Game3\Script\Player\PlayerInventory.cs" />
     <Compile Include="Assets\Game3\Script\Player\PlayerMotor.cs" />
-    <Compile Include="Assets\Game3\Script\PlayerTeam.cs" />
-    <Compile Include="Assets\Game3\Script\SlotsTeamMemberLists.cs" />
+    <Compile Include="Assets\Game3\Script\Player\PlayerTeam.cs" />
+    <Compile Include="Assets\Game3\Script\Player\SlotsTeamMemberLists.cs" />
     <Compile Include="Assets\Game3\Script\System\DataBase.cs" />
     <Compile Include="Assets\Game3\Script\System\GameSystem.cs" />
+    <Compile Include="Assets\Game3\Script\UI\DisplayTeamSystem.cs" />
     <Compile Include="Assets\Game3\Script\UI\DragWindow.cs" />
     <Compile Include="Assets\Game3\Script\UI\UILink.cs" />
     <Compile Include="Assets\Game3\Script\Windows\Inventory\DummyItem.cs" />
     <Compile Include="Assets\Game3\Script\Windows\Inventory\Slot.cs" />
     <Compile Include="Assets\Game3\Script\Windows\Inventory\SlotsInventoryLists.cs" />
     <Compile Include="Assets\Game3\Script\Windows\ItemSocket.cs" />
+    <Compile Include="Assets\PanelMember.cs" />
+    <Compile Include="Assets\PanelTarget.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

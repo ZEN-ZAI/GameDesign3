@@ -69,6 +69,13 @@ public class UILink : MonoBehaviour
             }
         }
 
+        //
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseTeamWindow();
+            CloseInventoryWindow();
+        }
+
         // reset UI
         if (Input.GetKey(KeyCode.F1))
         {

@@ -22,6 +22,10 @@ public class GameSystem : MonoBehaviour
     public state active;
 
     public bool inFight;
+    public PanelMember[] panelMember;
+    public Transform[] teamPosition;
+    public Transform[] enemyPosition;
+    public Queue<Character> queueCharacter = new Queue<Character>();
 
     void Start()
     {
@@ -35,6 +39,12 @@ public class GameSystem : MonoBehaviour
         if (active == NormalState && inFight) //  normal to fight
         {
             mainUI.SetActive(false);
+
+            SpawnPlayerTeam();
+            SpawnEnemyTeam();
+            SetInstanceMemberPanel();
+
+
             active = (state)(FightState);
             active();
         }
@@ -77,6 +87,56 @@ public class GameSystem : MonoBehaviour
         done(true);
     }
 
+    public void Enqueue()
+    {
+
+    }
+
+    public void Dequeue()
+    {
+
+    }
+
+    public void RandomEnemy()
+    {
+
+    }
+
+    public void SetInstanceMemberPanel()
+    {
+        for (int i = 0; i < panelMember.Length; i++)
+        {
+            if (panelMember[i] != null && PlayerTeam.instance.teamLists[i] != null)
+            {
+                panelMember[i].targetCharacter = teamPosition[i].GetComponent<DummyCharacter>();
+                panelMember[i].UpdateInstance();
+            }
+        }
+    }
+
+    public void SpawnPlayerTeam()
+    {
+        for (int i = 0; i < PlayerTeam.instance.teamLists.Length; i++)
+        {
+            if (PlayerTeam.instance.teamLists[i] != null)
+            {
+                //teamPosition[i].GetComponent<DummyCharacter>().AddCharacter(Instantiate(PlayerTeam.instance.teamLists[i], teamPosition[i]));
+                teamPosition[i].GetComponent<DummyCharacter>().AddCharacter(PlayerTeam.instance.teamLists[i]);
+            }
+        }
+    }
+
+    public void SpawnEnemyTeam()
+    {
+        /*for (int i = 0; i < PlayerTeam.instance.teamLists.Length; i++)
+        {
+            if (PlayerTeam.instance.teamLists[i] != null)
+            {
+                teamPosition[i].GetComponent<DummyCharacter>().AddCharacter(Instantiate(PlayerTeam.instance.teamLists[i], teamPosition[i]));
+            }
+        }*/
+    }
+
     public void SetFight()
     {
         inFight = true;
@@ -90,6 +150,7 @@ public class GameSystem : MonoBehaviour
     private void FightState()
     {
         FightCameraEnable();
+
     }
     private void NormalState()
     {

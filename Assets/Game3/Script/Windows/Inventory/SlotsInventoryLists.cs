@@ -42,7 +42,7 @@ public class SlotsInventoryLists : MonoBehaviour
     {
         if (slotsInventoryLists.Count < maxInventory)
         {
-            Debug.LogWarning("Add Slot.");
+            Debug.Log("Add Inventory Slot.");
 
             GameObject slotInventory = Instantiate(slotInventoryPrefeb, inventoryContent);
             slotInventory.transform.tag = "InventorySlot";
@@ -54,7 +54,7 @@ public class SlotsInventoryLists : MonoBehaviour
     {
         if (slotsInventoryLists.Count >= 1)
         {
-            Debug.LogWarning("Remove Slot.");
+            Debug.Log("Remove Inventory Slot.");
 
             slotsInventoryLists.Remove(slotsInventoryLists[slotsInventoryLists.Count - 1]);
             slotsInventoryLists.Capacity--;
@@ -64,7 +64,7 @@ public class SlotsInventoryLists : MonoBehaviour
 
     public void ClearSlot()
     {
-        Debug.LogWarning("Clear Slot.");
+        Debug.Log("Clear Slot.");
 
         for (int i = slotsInventoryLists.Count; i >= 1; i--)
         {
@@ -83,7 +83,7 @@ public class SlotsInventoryLists : MonoBehaviour
             ItemSocket newItemSocket = Instantiate(ItemSocketDummy, slotsInventoryLists[index].transform);
             newItemSocket.AddInstance(character);
 
-            Debug.LogWarning("Add item[" + character.name + "] in slot: " + index);
+            Debug.Log("Add item[" + character.name + "] in slot: " + index);
         }
 
     }

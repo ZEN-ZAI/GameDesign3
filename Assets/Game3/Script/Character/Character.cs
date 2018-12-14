@@ -6,13 +6,18 @@ using UnityEngine;
 public class Character : ScriptableObject
 {
     public int itemID;
-    public string monsterID = "001";
+    public string characterID = "000";
     new public string name = "New Character";
     public Sprite icon = null;
     public GameObject prefab = null;
 
-    public string rank; 
-    public int hp;
-    public int atk;
-    
+    public string rank;
+
+    public int currentHp;
+    public int maxHp;
+
+    public int attack;
+    public int defense;
+
+    public string special = "Not have special.";
 }

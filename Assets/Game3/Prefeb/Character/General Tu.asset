@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1119597ccbb0d468429223e5b3d81b, type: 3}
+  m_Name: General Tu
+  m_EditorClassIdentifier: 
+  itemID: 0
+  characterID: 000
+  name: General Tu
+  icon: {fileID: 21300000, guid: 77cb98ed203def0468f54b22cd1c296d, type: 3}
+  prefab: {fileID: 7852431659694984109, guid: 94f8e2dee226ba24f92f143c52a8a086, type: 3}
+  rank: SSR
+  currentHp: 0
+  maxHp: 100
+  attack: 50
+  defense: 50
+  special: Not have special.

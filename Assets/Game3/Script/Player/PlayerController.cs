@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         motor = GetComponent<PlayerMotor>();
-        cam = Camera.main;
 
         active = (state)(Idle);
         active();
@@ -35,20 +34,22 @@ public class PlayerController : MonoBehaviour
     {
         velocity = motor.GetVelocity();
         PlayerFSM();
+        MainCharacter();
 
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            PlayerInventory.instance.AddItem(DataBase.instance.GiftItem(0));
-        }
     }
 
     void FixedUpdate()
     {
 
-        if (Input.GetMouseButtonDown(0) && active != Fight && !UILink.instance.haveWindowInOpen)
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            PlayerInventory.instance.AddItem(DataBase.instance.GiftItem(0));
+        }
+
+        if (Input.GetMouseButtonDown(0) && active != Fight && !UILink.instance.haveWindowInOpen && PlayerTeam.instance.teamLists[0] != null)
         {
             // Shoot out a ray
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             // If we hit
@@ -56,6 +57,20 @@ public class PlayerController : MonoBehaviour
             {
                 motor.MoveToPoint(hit.point);
             }
+        }
+
+    }
+
+    private void MainCharacter()
+    {
+        if (PlayerTeam.instance.teamLists[0] != null && motor.rootModel.childCount == 0)
+        {
+            motor.model = Instantiate(PlayerTeam.instance.teamLists[0].prefab, motor.rootModel);
+        }
+
+        if (PlayerTeam.instance.teamLists[0] == null && motor.rootModel.childCount == 1)
+        {
+            Destroy(motor.model.gameObject);
         }
     }
 

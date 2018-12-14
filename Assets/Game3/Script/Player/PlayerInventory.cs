@@ -81,7 +81,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
 
-    // for Debug
+    // for Editor
     /*
     void Start()
     {

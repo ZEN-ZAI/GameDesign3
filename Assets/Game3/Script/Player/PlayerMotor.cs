@@ -7,6 +7,17 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMotor : MonoBehaviour
 {
+    #region Singleton
+    public static PlayerMotor instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+
+    public Transform rootModel;
+    public GameObject model;
     private NavMeshAgent agent;
 
     void Start()
@@ -21,7 +32,6 @@ public class PlayerMotor : MonoBehaviour
 
     public void StopToMove()
     {
-        //agent.velocity = Vector3.zero;
         agent.velocity = Vector3.zero;
         agent.ResetPath();
 
@@ -31,6 +41,4 @@ public class PlayerMotor : MonoBehaviour
     {
         return agent.velocity;
     }
-
-
 }
