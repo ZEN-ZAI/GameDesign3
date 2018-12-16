@@ -76,10 +76,22 @@ public class PlayerTeam : MonoBehaviour
 
     void Start()
     {
+        for (int i = 0; i < maxMember; i++)
+        {
+            teamLists.Add(null);
+        }
     }
 
     void Update()
     {
+        if (teamLists.Count < maxMember)
+        {
+            teamLists.Add(null);
+        }
+        else if (teamLists.Count > maxMember)
+        {
+            teamLists.Remove(null);
+        }
         SlotsTeamMemberLists.instance.SetMaxInventory(maxMember);
     }
 }

@@ -2570,12 +2570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af6c3480ff38a6439373e3c106e599e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamLists:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  teamLists: []
   maxMember: 5
 --- !u!114 &321424819
 MonoBehaviour:
@@ -7247,6 +7242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1340556278}
   - component: {fileID: 1340556279}
+  - component: {fileID: 1340556280}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -7282,6 +7278,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamLists: []
   maxMember: 0
+--- !u!114 &1340556280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340556277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d17da8c5e43e1d540a88d4a55960db94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1355700607
 GameObject:
   m_ObjectHideFlags: 0
@@ -10608,7 +10616,6 @@ MonoBehaviour:
   debugConsole: {fileID: 1118363760}
   inventoryWindow: {fileID: 1872205055}
   teamWindow: {fileID: 1263524990}
-  panelTarget: {fileID: 2073742152}
   panelMemberControl: {fileID: 1881187646}
   haveWindowInOpen: 0
   speed: 0
@@ -12891,7 +12898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2073742152
 RectTransform:
   m_ObjectHideFlags: 0

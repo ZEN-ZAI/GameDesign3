@@ -14,7 +14,7 @@ public class PanelTarget : MonoBehaviour
         instance = this;
     }
     #endregion
-
+    
     public GameObject panelTarget;
     public Image imageTarget;
     public Image hpBarTarget;
@@ -35,10 +35,22 @@ public class PanelTarget : MonoBehaviour
         defTarget.text = "Def: " + targetCharacter.GetAttribute.defense.ToString();
     }
 
-    public void PanelTargetActive(bool boolean)
+    void Update()
+    {
+        if (targetCharacter == null)
+        {
+            panelTarget.SetActive(false);
+        }
+        else
+        {
+            panelTarget.SetActive(true);
+        }
+    }
+
+    /*public void PanelTargetActive(bool boolean)
     {
         panelTarget.SetActive(boolean);
-    }
+    }*/
 
 
 

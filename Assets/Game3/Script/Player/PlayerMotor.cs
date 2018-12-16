@@ -29,7 +29,7 @@ public class PlayerMotor : MonoBehaviour
     {
         
 
-        if (PanelTarget.instance.targetCharacter != null && agent.velocity != Vector3.zero)
+        if (GameSystem.instance.inFight && PanelTarget.instance.targetCharacter != null && agent.velocity != Vector3.zero)
         {
             Debug.Log(GetDistanceToPoint());
 
@@ -49,11 +49,14 @@ public class PlayerMotor : MonoBehaviour
             //StopToMove();
             transform.localRotation = Quaternion.identity;
             model.transform.localRotation = Quaternion.identity;
+            tempCharacter.canAttack = false;
         }
     }
     private Animator tempAnimator;
     private int tempAtk;
     private Vector3 tempStartTranform;
+    private Character tempCharacter;
+
     private bool attack;
 
 
@@ -62,11 +65,12 @@ public class PlayerMotor : MonoBehaviour
         return agent.remainingDistance;
     }
 
-    public void MoveToTarget(Vector3 point, Animator animator,int tempAtk, Vector3 tempStartTranform)
+    public void MoveToTarget(Vector3 point, Animator animator,int tempAtk, Vector3 tempStartTranform, Character tempCharacter)
     {
         tempAnimator = animator;
         this.tempAtk = tempAtk;
         this.tempStartTranform = tempStartTranform;
+        this.tempCharacter = tempCharacter;
         agent.SetDestination(point);
     }
 

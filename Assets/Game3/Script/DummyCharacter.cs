@@ -60,10 +60,11 @@ public class DummyCharacter : MonoBehaviour
         GetComponent<PlayerMotor>().MoveToTarget(PanelTarget.instance.targetCharacter.transform.position, 
             model.GetComponent<Animator>(),
             this.character.attack,
-            tempStartTranform
+            tempStartTranform,
+            character
             );
 
-        CanAttack = false;
+        //CanAttack = false;
     }
 
     /*private IEnumerator CheckStop(System.Action<bool> done, PlayerMotor playerMotor)

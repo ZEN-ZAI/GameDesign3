@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Game3\Script\Bot.cs" />
     <Compile Include="Assets\Game3\Script\Camera\CameraAnimation.cs" />
     <Compile Include="Assets\Game3\Script\Camera\CameraController.cs" />
     <Compile Include="Assets\Game3\Script\Character\Character.cs" />

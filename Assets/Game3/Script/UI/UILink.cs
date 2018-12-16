@@ -23,7 +23,6 @@ public class UILink : MonoBehaviour
     public GameObject inventoryWindow;
     public GameObject teamWindow;
 
-    public Transform panelTarget;
     public Transform panelMemberControl;
 
     public delegate void state();
@@ -53,17 +52,6 @@ public class UILink : MonoBehaviour
             {
                 panelMemberControl.GetChild(i).gameObject.SetActive(true);
             }
-        }
-
-        if (!GameSystem.instance.inFight)
-        {
-            panelTarget.gameObject.SetActive(false);
-            panelMemberControl.gameObject.SetActive(false);
-        }
-        else if (GameSystem.instance.inFight)
-        {
-            panelTarget.gameObject.SetActive(true);
-            panelMemberControl.gameObject.SetActive(true);
         }
 
         if (inventoryWindow.activeInHierarchy ||

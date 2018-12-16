@@ -24,7 +24,6 @@ public class GameSystem : MonoBehaviour
     public bool inFight;
 
     public Transform[] teamPosition;
-
     public Transform[] enemyPosition;
 
     public Queue<WhoPlay> queuePlay = new Queue<WhoPlay>();
