@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class CameraAnimation : MonoBehaviour
 {
-    public float speed;
+    #region Singleton
+    public static CameraAnimation instance;
 
+    void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+
+    public float speed;
     private Animator animator;
 
     void Start()

@@ -58,6 +58,14 @@ public class DataBase : MonoBehaviour
         return newItem;
     }
 
+    public Character RandomItem()
+    {
+        Character newItem = Instantiate(allCharacter[Random.Range(0, allCharacter.Count)]);
+        newItem.itemID = ++itemId;
+
+        return newItem;
+    }
+
     void Update()
     {
         

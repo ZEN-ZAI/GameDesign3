@@ -16,7 +16,7 @@ public class SlotsTeamMemberLists : MonoBehaviour
     public Transform teamContent;
     public GameObject TeamMemberSlotPrefeb;
     public List<GameObject> slotsTeamLists = new List<GameObject>();
-    private int maxMember;
+    [SerializeField]  private int maxMember;
 
     public int Count
     {
@@ -33,7 +33,7 @@ public class SlotsTeamMemberLists : MonoBehaviour
         maxMember = n;
     }
 
-    public void AddSlot()
+    private void AddSlot()
     {
         if (slotsTeamLists.Count < maxMember)
         {
@@ -45,7 +45,7 @@ public class SlotsTeamMemberLists : MonoBehaviour
         }
     }
 
-    public void RemoveSlot()
+    private void RemoveSlot()
     {
         if (slotsTeamLists.Count > 1)
         {
@@ -59,6 +59,8 @@ public class SlotsTeamMemberLists : MonoBehaviour
 
     void Start()
     {
+
+
         if (teamContent.childCount != 0)
         {
             for (int i = 0; i < teamContent.childCount; i++)

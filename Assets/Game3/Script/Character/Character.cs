@@ -13,11 +13,14 @@ public class Character : ScriptableObject
 
     public string rank;
 
-    public int currentHp;
-    public int maxHp;
+    public float currentHp;
+    public float maxHp;
 
     public int attack;
     public int defense;
 
     public string special = "Not have special.";
+
+    //
+    public bool canAttack;
 }

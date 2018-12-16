@@ -13,11 +13,11 @@ public class DisplayTeamSystem : MonoBehaviour
 
         for (int i = 0; i < PlayerTeam.instance.Count; i++)
         {
-            if (PlayerTeam.instance.HaveMember(i) && team[i].childCount == 0)
+            if (!PlayerTeam.instance.NullCharacter(i) && team[i].childCount == 0)
             {
-                Instantiate(PlayerTeam.instance.teamLists[i].prefab, team[i]);
+                Instantiate(PlayerTeam.instance.GetCharacter(i).prefab, team[i]);
             }
-            else if (!PlayerTeam.instance.HaveMember(i) && team[i].childCount == 1)
+            else if (PlayerTeam.instance.NullCharacter(i) && team[i].childCount == 1)
             {
                 Destroy(team[i].GetChild(0).gameObject);
             }

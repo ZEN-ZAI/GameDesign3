@@ -5,9 +5,16 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool randomFight;
-    public Vector3 velocity;
+    #region Singleton
+    public static PlayerController instance;
 
+    void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+
+    public Animator animator;
     public LayerMask movementMask;      // The ground
     private PlayerMotor motor;      // Reference to our motor
     private Camera cam;				// Reference to our camera
@@ -15,23 +22,20 @@ public class PlayerController : MonoBehaviour
     public delegate void state();
     public state active;
 
-    public static PlayerController instance;
-
-    void Awake()
-    {
-        instance = this;
-    }
+    public bool randomFight;
+    public Vector3 velocity;
 
     void Start()
     {
         motor = GetComponent<PlayerMotor>();
-
+        MainCharacter();
         active = (state)(Idle);
         active();
     }
 
     void Update()
     {
+
         velocity = motor.GetVelocity();
         PlayerFSM();
         MainCharacter();
@@ -43,10 +47,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            PlayerInventory.instance.AddItem(DataBase.instance.GiftItem(0));
+            PlayerInventory.instance.AddItem(DataBase.instance.RandomItem());
         }
 
-        if (Input.GetMouseButtonDown(0) && active != Fight && !UILink.instance.haveWindowInOpen && PlayerTeam.instance.teamLists[0] != null)
+        if (Input.GetMouseButtonDown(0) && active != Fight && !UILink.instance.haveWindowInOpen && !PlayerTeam.instance.NullCharacter(0))
         {
             // Shoot out a ray
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -63,12 +67,13 @@ public class PlayerController : MonoBehaviour
 
     private void MainCharacter()
     {
-        if (PlayerTeam.instance.teamLists[0] != null && motor.rootModel.childCount == 0)
+        if (!PlayerTeam.instance.NullCharacter(0) && motor.rootModel.childCount == 0)
         {
-            motor.model = Instantiate(PlayerTeam.instance.teamLists[0].prefab, motor.rootModel);
+            motor.model = Instantiate(PlayerTeam.instance.GetCharacter(0).prefab, motor.rootModel);
+            animator = motor.model.GetComponent<Animator>();
         }
 
-        if (PlayerTeam.instance.teamLists[0] == null && motor.rootModel.childCount == 1)
+        if (PlayerTeam.instance.NullCharacter(0) && motor.rootModel.childCount == 1)
         {
             Destroy(motor.model.gameObject);
         }
@@ -77,12 +82,12 @@ public class PlayerController : MonoBehaviour
     private void PlayerFSM()
     {
         // State Idle to ...
-        if (active == Idle && motor.GetVelocity() != Vector3.zero)
+        if (active == Idle && motor.GetVelocity() != Vector3.zero &&! PlayerTeam.instance.NullCharacter(0))
         {
             active = (state)(Walk);
             active();
         }
-        else if (active == Idle && GameSystem.instance.inFight)
+        else if (active == Idle && GameSystem.instance.inFight && !PlayerTeam.instance.NullCharacter(0))
         {
             active = (state)(Fight);
             active();
@@ -132,11 +137,19 @@ public class PlayerController : MonoBehaviour
 
     private void Idle()
     {
-
+        if (!PlayerTeam.instance.NullCharacter(0))
+        {
+            animator.SetBool("idle", true);
+        }
+        
     }
 
     private void Walk()
     {
+        if (!PlayerTeam.instance.NullCharacter(0))
+        {
+            animator.SetBool("idle", false);
+        }
         if (randomFight)
         {
             GameSystem.instance.RandomFight();

@@ -61,10 +61,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DummyCharacter.cs" />
     <Compile Include="Assets\Game3\Script\Camera\CameraAnimation.cs" />
     <Compile Include="Assets\Game3\Script\Camera\CameraController.cs" />
     <Compile Include="Assets\Game3\Script\Character\Character.cs" />
+    <Compile Include="Assets\Game3\Script\DummyCharacter.cs" />
+    <Compile Include="Assets\Game3\Script\EnemyTeam.cs" />
+    <Compile Include="Assets\Game3\Script\PanelMember.cs" />
+    <Compile Include="Assets\Game3\Script\PanelTarget.cs" />
     <Compile Include="Assets\Game3\Script\Player\PlayerController.cs" />
     <Compile Include="Assets\Game3\Script\Player\PlayerInventory.cs" />
     <Compile Include="Assets\Game3\Script\Player\PlayerMotor.cs" />
@@ -79,8 +82,6 @@
     <Compile Include="Assets\Game3\Script\Windows\Inventory\Slot.cs" />
     <Compile Include="Assets\Game3\Script\Windows\Inventory\SlotsInventoryLists.cs" />
     <Compile Include="Assets\Game3\Script\Windows\ItemSocket.cs" />
-    <Compile Include="Assets\PanelMember.cs" />
-    <Compile Include="Assets\PanelTarget.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -118,6 +119,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\Allsky\AllSkyDemoEnvironment\Specular Snow Vertex Colours.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -128,6 +130,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Allsky\allsky_readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

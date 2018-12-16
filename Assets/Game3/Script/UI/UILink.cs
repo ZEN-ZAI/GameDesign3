@@ -19,8 +19,12 @@ public class UILink : MonoBehaviour
     public TMP_Text statePlayerText;
 
     public Canvas mainCanvas;
+    public GameObject debugConsole;
     public GameObject inventoryWindow;
     public GameObject teamWindow;
+
+    public Transform panelTarget;
+    public Transform panelMemberControl;
 
     public delegate void state();
     public state active;
@@ -32,6 +36,35 @@ public class UILink : MonoBehaviour
     {
         stateGameText.text = "Game State: " + GameSystem.instance.active.Method.ToString().Substring(5);
         statePlayerText.text = "Player State: " + PlayerController.instance.active.Method.ToString().Substring(5);
+
+        if (PlayerTeam.instance.NullCharacter(0))
+        {
+            Debug.LogWarning("Please input team leader slot.");
+            OpenTeamWindow();
+        }
+
+        for (int i = 0; i < PlayerTeam.instance.Count; i++)
+        {
+            if (PlayerTeam.instance.NullCharacter(i))
+            {
+                panelMemberControl.GetChild(i).gameObject.SetActive(false);
+            }
+            else
+            {
+                panelMemberControl.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+
+        if (!GameSystem.instance.inFight)
+        {
+            panelTarget.gameObject.SetActive(false);
+            panelMemberControl.gameObject.SetActive(false);
+        }
+        else if (GameSystem.instance.inFight)
+        {
+            panelTarget.gameObject.SetActive(true);
+            panelMemberControl.gameObject.SetActive(true);
+        }
 
         if (inventoryWindow.activeInHierarchy ||
             teamWindow.activeInHierarchy)
@@ -69,11 +102,21 @@ public class UILink : MonoBehaviour
             }
         }
 
-        //
+        // Close all window
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             CloseTeamWindow();
             CloseInventoryWindow();
+        }
+
+        //
+        if (Input.GetKeyDown(KeyCode.F8) && debugConsole.activeInHierarchy)
+        {
+            debugConsole.SetActive(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.F8) && !debugConsole.activeInHierarchy)
+        {
+            debugConsole.SetActive(true);
         }
 
         // reset UI
@@ -106,6 +149,19 @@ public class UILink : MonoBehaviour
     {
         teamWindow.SetActive(true);
     }
+
+    public void SetInstanceMemberPanel(Transform[] teamPosition)
+    {
+        for (int i = 0; i < panelMemberControl.childCount; i++)
+        {
+            if (panelMemberControl.GetChild(i) != null && !PlayerTeam.instance.NullCharacter(i))
+            {
+                panelMemberControl.GetChild(i).GetComponent<PanelMember>().targetCharacter = teamPosition[i].GetComponent<DummyCharacter>();
+                panelMemberControl.GetChild(i).GetComponent<PanelMember>().UpdateInstance();
+            }
+        }
+    }
+
     public float speed;
     public void MoveInventoryWindow()
     {

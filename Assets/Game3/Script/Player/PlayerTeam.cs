@@ -16,34 +16,29 @@ public class PlayerTeam : MonoBehaviour
     }
     #endregion
 
-    public Character[] teamLists;
+    [SerializeField] private List<Character> teamLists = new List<Character>();
     [SerializeField] private int maxMember;
     public int Count
     {
-        get { return teamLists.Length; }
+        get { return teamLists.Count; }
     }
 
-    public void UpdateMaxMember(int n)
+    public void AddMaxMember()
     {
-        maxMember += n;
-    }
-
-    public bool HaveMember(int index)
-    {
-        return teamLists[index];
+        maxMember++;
     }
 
     public void AddMember(int memberNumber, Character character)
     {
-        Debug.Log("Add PlayerTeam characterID[" + character.itemID + "] in Slot["+memberNumber+"]");
+        Debug.Log("Add PlayerTeam characterID[" + character.itemID + "] in Slot[" + memberNumber + "]");
         teamLists[memberNumber] = character;
     }
 
     public void Remove(Character character)
     {
-        Debug.Log("Remove PlayerTeam characterID[" + character.itemID+"]");
+        Debug.Log("Remove PlayerTeam characterID[" + character.itemID + "]");
 
-        for (int i = 0; i < teamLists.Length; i++)
+        for (int i = 0; i < teamLists.Count; i++)
         {
             if (teamLists[i] != null && teamLists[i].itemID == character.itemID)
             {
@@ -52,20 +47,39 @@ public class PlayerTeam : MonoBehaviour
         }
     }
 
+    public Character GetCharacter(int index)
+    {
+        return teamLists[index];
+    }
+
+    public bool GetCharacterCanAttack(int index)
+    {
+        return teamLists[index].canAttack;
+    }
+
+    public void SetCharacterCanAttack(int index, bool boolean)
+    {
+         teamLists[index].canAttack = boolean;
+    }
+
+    public bool NullCharacter(int index)
+    {
+        if (teamLists[index] == null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     void Start()
     {
-        teamLists = new Character[5];
-        PlayerTeam.instance.AddMember(0, DataBase.instance.GiftItem(0));
-        PlayerTeam.instance.AddMember(1, DataBase.instance.GiftItem(0));
-        PlayerTeam.instance.AddMember(2, DataBase.instance.GiftItem(0));
-        PlayerTeam.instance.AddMember(3, DataBase.instance.GiftItem(0));
-        PlayerTeam.instance.AddMember(4, DataBase.instance.GiftItem(0));
     }
 
     void Update()
     {
-
         SlotsTeamMemberLists.instance.SetMaxInventory(maxMember);
     }
 }
